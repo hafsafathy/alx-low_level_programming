@@ -1,4 +1,5 @@
 tasks for c Hello,World project:
+//////////////////////////
 0. run a C file through the preprocessor and save the result into another file.
 1. compile a C file but does not link.
 2. generate the assembly code of a C code and save it in an output file.
