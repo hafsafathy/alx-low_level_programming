@@ -4,9 +4,9 @@
  * main - main block
  * Return: 0
  */
-main(void)
+int main(void)
 {
-	for (int c = 0; c <=26; c++)
+	for (int c = 0; c < 26; c++)
 	{
 		putchar(c + 97);
 	}
