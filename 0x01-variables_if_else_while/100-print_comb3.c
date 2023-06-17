@@ -5,21 +5,19 @@
  */
 int main(void)
 {
-	int num1 = 48;
-	int num2 = num1 + 1;
+	int num1;
+	int num2;
 
-	while (num1 <= 56)
+	for (num1 = 48; num1 <= 56;   num1++)
 	{
-		while (num2 <= 57)
+		for (num2 = num1 + 1; num2 <= 57; num2++)
 		{
 			putchar(num1), putchar(num2);
 			if (num1 != 56 || num2 != 57)
 			{
 				putchar(','), putchar(' ');
 			}
-			num2++
 		}
-		num1++
 	}
 	putchar('\n');
 	return (0);
