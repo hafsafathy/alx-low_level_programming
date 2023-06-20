@@ -2,7 +2,7 @@
 
 /**
  * main - Check description
- * Description: It prints the word Holberton, followed by a new line.
+ * Description: It prints ' _putchar'  followed by a new line.
  * Return:  always  0(success) .
  */
 int main(void)
