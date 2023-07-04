@@ -18,7 +18,7 @@ void print_buffer(char *b, int size)
 		for (i = 0; i < size; i += 10)
 		{
 			printf("%.8x:", i);
-			for (i = j; j < i + 10; j++)
+			for (j = i; j < i + 10; j++)
 			{
 				if (j % 2 == 0)
 					printf(" ");
@@ -28,7 +28,7 @@ void print_buffer(char *b, int size)
 					printf("  ");
 			}
 			printf(" ");
-			for (k = i; k < i + 10; k++)
+			for (i = k; k < i + 10; k++)
 			{
 				if (k >= size)
 					break;
