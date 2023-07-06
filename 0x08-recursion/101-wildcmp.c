@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * wildcmp - a function that compares two strings 
- * @s1: input 
+ * wildcmp - a function that compares two strings
+ * @s1: input
  * @s2: input .Can contains a * as a special character.
  * Return: 1 if the strings can be considered identical, otherwise return 0.
  */
