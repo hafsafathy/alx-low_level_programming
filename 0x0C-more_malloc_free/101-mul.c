@@ -1,120 +1,112 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
+#define ERR_MSG "Error"
 
 /**
- * zero - check if any number zero.
- * @v: argument.
- * Return: no return.
+ * is_digit - checks if a string contains a non-digit char.
+ * @s: input.
+ * Return: 0 if a non-digit is found, 1 otherwise
  */
-void zero(char *v[])
-{
-	int i, z1 = 1, z2 = 1;
 
-	for (i = 0; v[1][i]; i++)
-		if (v[1][i] != '0')
-		{
-			z1 = 0;
-			break;
-		}
-
-	for (i = 0; v[2][i]; i++)
-		if (v[2][i] != '0')
-		{
-			z2 = 0;
-			break;
-		}
-
-	if (z1 == 1 || z2 == 1)
-	{
-		printf("0\n");
-		exit(0);
-	}
-}
-
-/**
- * _initialize_array - set memery to zero in a new array
- * @ar: char array.
- * @lar: length of array.
- * Return: pointer.
- */
-char *_initialize_array(char *ar, int lar)
+int is_digit(char *s)
 {
 	int i = 0;
 
-	for (i = 0; i < lar; i++)
-		ar[i] = '0';
-	ar[lar] = '\0';
-	return (ar);
-}
-
-/**
- * checknum - determines length of the number
- * and checks if number is in base 10.
- * @v: arguments vector.
- * @n: row of the array.
- * Return: length of the number.
- */
-int checknum(char *v[], int n)
-{
-	int ln;
-
-	for (ln = 0; v[n][ln]; ln++)
-		if (!isdigit(v[n][ln]))
-		{
-			printf("Error\n");
-			exit(98);
-		}
-
-	return (ln);
-}
-/**
- * main - Entry point.
- * program that multiplies two positive numbers.
- * @c: number of arguments.
- * @v: arguments.
- * Return: 0.
- */
-int main(int c, char *v[])
-{
-	int num1, num2, add, d, dl, i, j, k, re;
-	char *res;
-
-	if (c != 3)
-		printf("Error\n"), exit(98);
-	num1 = checknum(v, 1), num2 = checknum(v, 2);
-	zero(v), add = num1 + num2, res = malloc(add + 1);
-	if (res == NULL)
-		printf("Error\n"), exit(98);
-	res = _initialize_array(res, add);
-	k = add - 1, i = num1 - 1, j = num2 - 1, re = dl = 0;
-	for (; k >= 0; k--, i--)
+	while (s[i])
 	{
-		if (i < 0)
-		{
-			if (dl > 0)
-			{
-				d = (res[k] - '0') + dl;
-				if (d > 9)
-					res[k - 1] = (d / 10) + '0';
-				res[k] = (d % 10) + '0';
-			}
-			i = num1 - 1, j--, dl = 0, re++, k = add - (1 + re);
-		}
-		if (j < 0)
-		{
-			if (res[0] != '0')
-				break;
-			add--;
-			free(res), res = malloc(add + 1), res = _initialize_array(res, add);
-			k = add - 1, i = num1 - 1, j = num2 - 1, re = dl = 0;
-		}
-		if (j >= 0)
-		{
-			d = ((v[1][i] - '0') * (v[2][j] - '0')) + (res[k] - '0') + dl;
-			dl = d / 10, res[k] = (d % 10) + '0';
-		}
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
 	}
-	printf("%s\n", res);
+	return (1);
+}
+
+/**
+ * _strlen - returns the length of a string.
+ * @s: string.
+ * Return: the length of the string
+ */
+
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * errors - handles errors for main
+ */
+
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
+ * main - multiplies two positive number.
+ * @argc: number of arguments
+ * @argv: array of argument
+ * Return: always 0 (Success)
+ */
+
+int main(int argc, char *argv[])
+{
+
+	char *s1, *s2;
+	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
+
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+		errors();
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+
+	if (!result)
+		return (1);
+
+	for (i = 0; i <= len1 + len2; i++)
+
+		result[i] = 0;
+
+	for (len1 = len1 - 1; len1 >= 0; len1--)
+	{
+		digit1 = s1[len1] - '0';
+		carry = 0;
+
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		{
+
+			digit2 = s2[len2] - '0';
+			carry += result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
+		}
+
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
+	}
+
+	for (i = 0; i < len - 1; i++)
+	{
+		if (result[i])
+			a = 1;
+		if (a)
+			_putchar(result[i] + '0');
+	}
+
+	if (!a)
+		_putchar('0');
+
+	_putchar('\n');
+	free(result);
 	return (0);
 }
