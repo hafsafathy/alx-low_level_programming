@@ -69,7 +69,8 @@ int checknum(char *v[], int n)
 	return (ln);
 }
 /**
- * main - program that multiplies two positive numbers.
+ * main - Entry point.
+ * program that multiplies two positive numbers.
  * @c: number of arguments.
  * @v: arguments.
  * Return: 0.
