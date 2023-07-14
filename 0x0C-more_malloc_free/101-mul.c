@@ -78,7 +78,7 @@ int checknum(char **v, int n)
  */
 int main(int c, char **v)
 {
-	char *res
+	char *res;
 	int num1, num2, add, d, dl, i, j, k, re;
 
 	if (c != 3)
