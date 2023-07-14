@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -77,8 +76,8 @@ int checknum(char *v[], int n)
  */
 int main(int c, char *v[])
 {
-	char *res;
 	int num1, num2, add, d, dl, i, j, k, re;
+	char *res;
 
 	if (c != 3)
 		printf("Error\n"), exit(98);
