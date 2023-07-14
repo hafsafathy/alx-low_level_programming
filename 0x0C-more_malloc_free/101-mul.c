@@ -9,7 +9,7 @@
  */
 int main(int c, char **v)
 {
-	int n1, n2, res;
+	int num1, num2, mul;
 
 	if (c != 3)
 	{
@@ -18,10 +18,10 @@ int main(int c, char **v)
 	}
 	else
 	{
-		n1 = atoi(v[1]);
-		n2 = atoi(v[2]);
-		res = n1 * n2;
-		printf("%d\n", res);
+		num1 = atoi(v[1]);
+		num2 = atoi(v[2]);
+		mul = num1 * num2;
+		printf("%d\n", mul);
 		return (0);
 	}
 }
