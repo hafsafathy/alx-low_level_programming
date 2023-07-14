@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <ctype.h>
 
 /**
@@ -53,7 +53,6 @@ char *_initialize_array(char *ar, int lar)
  * and checks if number is in base 10.
  * @v: arguments vector.
  * @n: row of the array.
- *
  * Return: length of the number.
  */
 int checknum(char *v[], int n)
@@ -81,8 +80,7 @@ int main(int c, char *v[])
 	int num1, num2, add, d, dl, i, j, k, re;
 
 	if (c != 3)
-		printf("Error\n");
-		exit(98);
+		printf("Error\n"), exit(98);
 	num1 = checknum(v, 1), num2 = checknum(v, 2);
 	zero(v), add = num1 + num2, res = malloc(add + 1);
 	if (res == NULL)
