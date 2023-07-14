@@ -11,12 +11,12 @@
  *
  * Return: length of the number.
  */
-int checknum(char *argv[], int n)
+int checknum(char **v, int n)
 {
 	int ln;
 
-	for (ln = 0; argv[n][ln]; ln++)
-		if (!isdigit(argv[n][ln]))
+	for (ln = 0; v[n][ln]; ln++)
+		if (!isdigit(v[n][ln]))
 		{
 			printf("Error\n");
 			exit(98);
