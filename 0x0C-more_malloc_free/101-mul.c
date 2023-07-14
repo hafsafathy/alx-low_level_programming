@@ -1,120 +1,114 @@
-#include <stdlib.h>
+#include "main.h"
 #include <stdio.h>
-#include <ctype.h>
+#include <string.h>
 
 /**
- * zero - check if any number zero.
- * @v: argument.
- * Return: no return.
+ * _isdigit - checks if character is digit
+ * @c: the character to check
+ *
+ * Return: 1 if digit, 0 otherwise
  */
-void zero(char *v[])
+int _isdigit(int c)
 {
-	int i, z1 = 1, z2 = 1;
-
-	for (i = 0; v[1][i]; i++)
-		if (v[1][i] != '0')
-		{
-			z1 = 0;
-			break;
-		}
-
-	for (i = 0; v[2][i]; i++)
-		if (v[2][i] != '0')
-		{
-			z2 = 0;
-			break;
-		}
-
-	if (z1 == 1 || z2 == 1)
-	{
-		printf("0\n");
-		exit(0);
-	}
+	return (c >= '0' && c <= '9');
 }
 
 /**
- * _initialize_array - set memery to zero in a new array
- * @ar: char array.
- * @lar: length of array.
- * Return: pointer.
+ * _strlen - returns the length of a string
+ * @s: the string whose length to check
+ *
+ * Return: integer length of string
  */
-char *_initialize_array(char *ar, int lar)
+int _strlen(char *s)
 {
 	int i = 0;
 
-	for (i = 0; i < lar; i++)
-		ar[i] = '0';
-	ar[lar] = '\0';
-	return (ar);
+	while (*s++)
+		i++;
+	return (i);
 }
 
 /**
- * checknum - determines length of the number
- * and checks if number is in base 10.
- * @v: arguments vector.
- * @n: row of the array.
- * Return: length of the number.
+ * big_multiply - multiply two big number strings
+ * @s1: the first big number string
+ * @s2: the second big number string
+ *
+ * Return: the product big number string
  */
-int checknum(char *v[], int n)
+char *big_multiply(char *s1, char *s2)
 {
-	int ln;
+	char *r;
+	int l1, l2, a, b, c, x;
 
-	for (ln = 0; v[n][ln]; ln++)
-		if (!isdigit(v[n][ln]))
-		{
-			printf("Error\n");
-			exit(98);
-		}
-
-	return (ln);
-}
-/**
- * main - Entry point.
- * program that multiplies two positive numbers.
- * @c: number of arguments.
- * @v: arguments.
- * Return: 0.
- */
-int main(int c, char *v[])
-{
-	int num1, num2, add, d, dl, i, j, k, re;
-	char *res;
-
-	if (c != 3)
+	l1 = _strlen(s1);
+	l2 = _strlen(s2);
+	r = malloc(a = x = l1 + l2);
+	if (!r)
 		printf("Error\n"), exit(98);
-	num1 = checknum(v, 1), num2 = checknum(v, 2);
-	zero(v), add = num1 + num2, res = malloc(add + 1);
-	if (res == NULL)
-		printf("Error\n"), exit(98);
-	res = _initialize_array(res, add);
-	k = add - 1, i = num1 - 1, j = num2 - 1, re = dl = 0;
-	for (; k >= 0; k--, i--)
+	while (a--)
+		r[a] = 0;
+
+	for (l1--; l1 >= 0; l1--)
 	{
-		if (i < 0)
+		if (!_isdigit(s1[l1]))
 		{
-			if (dl > 0)
+			free(r);
+			printf("Error\n"), exit(98);
+		}
+		a = s1[l1] - '0';
+		c = 0;
+
+		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
+		{
+			if (!_isdigit(s2[l2]))
 			{
-				d = (res[k] - '0') + dl;
-				if (d > 9)
-					res[k - 1] = (d / 10) + '0';
-				res[k] = (d % 10) + '0';
+				free(r);
+				printf("Error\n"), exit(98);
 			}
-			i = num1 - 1, j--, dl = 0, re++, k = add - (1 + re);
+			b = s2[l2] - '0';
+
+			c += r[l1 + l2 + 1] + (a * b);
+			r[l1 + l2 + 1] = c % 10;
+
+			c /= 10;
 		}
-		if (j < 0)
-		{
-			if (res[0] != '0')
-				break;
-			add--;
-			free(res), res = malloc(add + 1), res = _initialize_array(res, add);
-			k = add - 1, i = num1 - 1, j = num2 - 1, re = dl = 0;
-		}
-		if (j >= 0)
-		{
-			d = ((v[1][i] - '0') * (v[2][j] - '0')) + (res[k] - '0') + dl;
-			dl = d / 10, res[k] = (d % 10) + '0';
-		}
+		if (c)
+			r[l1 + l2 + 1] += c;
 	}
-	printf("%s\n", res);
+	return (r);
+}
+
+
+/**
+ * main - multiply two big number strings
+ * @argc: the number of arguments
+ * @argv: the argument vector
+ *
+ * Return: Always 0 on success.
+ */
+int main(int argc, char **argv)
+{
+	char *r;
+	int a, c, x;
+
+	if (argc != 3)
+		printf("Error\n"), exit(98);
+
+	x = _strlen(argv[1]) + _strlen(argv[2]);
+	r = big_multiply(argv[1], argv[2]);
+	c = 0;
+	a = 0;
+	while (c < x)
+	{
+		if (r[c])
+			a = 1;
+		if (a)
+			_putchar(r[c] + '0');
+		c++;
+	}
+	if (!a)
+		_putchar('0');
+	_putchar('\n');
+	free(r);
 	return (0);
 }
