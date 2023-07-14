@@ -7,7 +7,7 @@
  * @v: argument.
  * Return: no return.
  */
-void zero(char **v)
+void zero(char *v[])
 {
 	int i, z1 = 1, z2 = 1;
 
@@ -56,7 +56,7 @@ char *_initialize_array(char *ar, int lar)
  *
  * Return: length of the number.
  */
-int checknum(char **v, int n)
+int checknum(char *v[], int n)
 {
 	int ln;
 
@@ -75,7 +75,7 @@ int checknum(char **v, int n)
  * @v: arguments.
  * Return: 0.
  */
-int main(int c, char **v)
+int main(int c, char *v[])
 {
 	char *res;
 	int num1, num2, add, d, dl, i, j, k, re;
