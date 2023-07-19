@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
 	for (i = 0; i < byt; i++)
 	{
-		printf("%02x", opc[i] & 0xFF);
+		printf("%02x", ptr[i] & 0xFF);
 		if (i != byt - 1)
 			printf(" ");
 	}
