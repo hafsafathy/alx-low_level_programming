@@ -10,8 +10,8 @@
  */
 int main(int argc, char *argv[])
 {
-	int byt, i;
-	unsigned char *fptr;
+	char *ptr = (char *) main;
+	int i, byt;
 
 	if (argc != 2)
 	{
@@ -19,18 +19,20 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	byt = atoi(argv[1]);
+
 	if (byt < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
-	fptr = (unsigned char *)main;
-	i = 0;
-	if (byt > 0)
+
+	for (i = 0; i < byt; i++)
 	{
-		while (i < (byt - 1))
-			printf("%02hhx ", fptr[i++]);
-		printf("%hhx\n", fptr[i]);
+		printf("%02x", opc[i] & 0xFF);
+		if (i != byt - 1)
+			printf(" ");
 	}
+
+	printf("\n");
 	return (0);
 }
