@@ -3,8 +3,8 @@
 /**
  * array_iterator -  function that executes a function given as
  * a parameter on each element of an array.
- * @array: is pointer to array 
- * @size: is Size of the array
+ * @array: is pointer to array.
+ * @size: is Size of the array.
  * @action: is a pointer to the function you need to use.
  * Return: Nothing
  */
