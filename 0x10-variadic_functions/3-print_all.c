@@ -8,7 +8,7 @@
 void print_all(const char * const format, ...)
 {
 	va_list all;
-	unsigned int i = 0, j, k= 0;
+	unsigned int i = 0, j, k = 0;
 	char *ptr;
 	const char form[] = "cifs";
 
