@@ -3,7 +3,7 @@
 
 void main_constructor(void) __attribute__((constructor));
 /**
- * main_constructor - function that prints 
+ * main_constructor - function that prints
  * before main runs
  * Return: Nothing
  */
