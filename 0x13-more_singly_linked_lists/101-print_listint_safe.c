@@ -1,33 +1,68 @@
 #include "lists.h"
-#include <stdio.h>
 
 /**
- * print_listint_safe - function that prints the elementsin a  list
- * @head: head of  list.
- * Return: number of nodes. Exits with 98 on failure
+ * free_list1 - free list
+ * @head: head of a list.
+ * Return: no return.
+ */
+void f_list1(plist_t **head)
+{
+	plist_t *t;
+	plist_t *c;
+
+	if (head != NULL)
+	{
+		c = *head;
+		while ((t = c) != NULL)
+		{
+			c = c->next;
+			free(t);
+		}
+		*head = NULL;
+	}
+}
+
+/**
+ * print_listint_safe - prints a linked list.
+ * @head: head of a list.
+ *
+ * Return: number of nodes in the list.
  */
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t node = 0;
-	const listint_t *p = head, *ne = head;
+	listp_t *ptr, *no, *plus;
 
-	if (head == NULL)
-		exit(98);
-
-	while (p && ne && ne->next && head)
+	ptr = NULL;
+	while (head != NULL)
 	{
-		p = p->next;
-		ne = ne->next->next;
-		if (p == ne)
-		{
-			printf("-> [%p] %d\n", (void *)head, head->n);
+		no = malloc(sizeof(plist_t));
+
+		if (no == NULL)
 			exit(98);
+
+		no->p = (void *)head;
+		no->next = ptr;
+		ptr = no;
+
+		plus = ptr;
+
+		while (plus->next != NULL)
+		{
+			plus = plus->next;
+			if (head == plus->p)
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listp(&ptr);
+				return (node);
+			}
 		}
 
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
 		node++;
 	}
-	head = NULL;
+
+	f_list1(&ptr);
 	return (node);
 }
