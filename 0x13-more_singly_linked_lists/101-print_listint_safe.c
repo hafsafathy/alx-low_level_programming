@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * free_list1 - free list
+ * f_list1 - free list
  * @head: head of a list.
  * Return: no return.
  */
@@ -31,7 +31,7 @@ void f_list1(plist_t **head)
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t node = 0;
-	listp_t *ptr, *no, *plus;
+	plist_t *ptr, *no, *plus;
 
 	ptr = NULL;
 	while (head != NULL)
@@ -53,7 +53,7 @@ size_t print_listint_safe(const listint_t *head)
 			if (head == plus->p)
 			{
 				printf("-> [%p] %d\n", (void *)head, head->n);
-				free_listp(&ptr);
+				f_list1(&ptr);
 				return (node);
 			}
 		}
