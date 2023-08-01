@@ -25,7 +25,7 @@ typedef struct listint_s
  */
 typedef struct plist
 {
-	void *pre;
+	void *p;
 	struct plist *next;
 } plist_t;
 size_t recursion_printer(const listint_t *h);
