@@ -31,7 +31,7 @@ size_t free_listint_safe(listint_t **h)
 {
 	size_t node = 0;
 	plist_t *ptr, *no, *plus;
-	listint_t *curr;
+	listint_t *c;
 
 	ptr = NULL;
 	while (*h != NULL)
