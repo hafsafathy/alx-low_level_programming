@@ -1,6 +1,8 @@
 #ifndef LISTS_H
 #define LISTS_H
+#include <stdio.h>
 #include <stdlib.h>
+
 /**
  * struct listint_s - singly linked list
  * @n: integer
@@ -14,6 +16,18 @@ typedef struct listint_s
 	int n;
 	struct listint_s *next;
 } listint_t;
+/**
+ * struct plist - singly linked list
+ * @p: pointer
+ * @next:  next node
+ *
+ * Description: singly linked list of pointers
+ */
+typedef struct plist
+{
+	void *pre;
+	struct plist *next;
+} plist_t;
 size_t recursion_printer(const listint_t *h);
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
@@ -31,4 +45,5 @@ size_t print_listint_safe(const listint_t *head);
 size_t free_listint_safe(listint_t **h);
 void free_list(listint_t *head);
 listint_t *find_listint_loop(listint_t *head);
+void f_list(plist_t **head)
 #endif
