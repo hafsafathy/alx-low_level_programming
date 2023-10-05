@@ -8,7 +8,6 @@
  * @value: is the value associated with the key.
  * Return: 1 if it succeeded, 0 otherwise.
  */
-int
 hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int ix = 0;
