@@ -101,8 +101,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	while (!v)
 	{
 		if (strcmp(n->key, key) == 0)
-			v = node->value;
-		n = node->next;
+			v = n->value;
+		n = n->next;
 	}
 	return (v);
 }
